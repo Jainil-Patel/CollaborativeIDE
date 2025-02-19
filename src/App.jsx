@@ -1,28 +1,28 @@
-import { useState } from "react";
-import Navbar from "./components/Navbar";
-import Sidebar from "./components/Sidebar";
-import CodeEditor from "./components/CodeEditor";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import { AuthProvider } from "./context/AuthContext";
+import Signup from "./pages/Signup";
+import Signin from "./pages/Signin";
+import Dashboard from "./pages/Dashboard";
+import ProtectedRoute from "./routes/ProtectedRoute";
+import "./App.css"
+export default function App() {
+  return (
+    <AuthProvider>
+      <Router>
+        <Routes>
+          {/* Public Routes */}
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/signin" element={<Signin />} />
 
-import "./App.css";
+          {/* Protected Routes */}
+          <Route element={<ProtectedRoute />}>
+            <Route path="/dashboard" element={<Dashboard />} />
+          </Route>
 
-function App() {
-    const [sidebarWidth, setSidebarWidth] = useState(64);
-
-    return (
-        <>
-            <Navbar />
-            <div className="flex">
-                <Sidebar setSidebarWidth={setSidebarWidth} />
-
-                <div
-                    style={{ marginLeft: `${sidebarWidth}px` }}
-                    className="flex-1 top-14 fixed transition-all duration-200"
-                >
-                    <CodeEditor />
-                </div>
-            </div>
-        </>
-    );
+          {/* Redirect unknown routes */}
+          <Route path="*" element={<Navigate to="/signup" />} />
+        </Routes>
+      </Router>
+    </AuthProvider>
+  );
 }
-
-export default App;

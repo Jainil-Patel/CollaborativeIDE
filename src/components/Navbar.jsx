@@ -1,5 +1,6 @@
 import logo from "../assets/logo.png";
 import { memo } from "react";
+import AvatarDropdown from "./AvatarDropdown";
 
 const Navbar = () => {
     return (
@@ -29,9 +30,16 @@ const Navbar = () => {
                         />
                     </svg>
                 </div>
-                <div className="text-[#D4D4D4] border-2 rounded-xl hover:bg-[#3C3C3C] select-none cursor-pointer px-4 py-1 border-[#3C3C3C]">
-                    Signup
+
+                
+                <div className="relative inline-flex items-center space-x-4">
+   
+                    <AvatarDropdown/>
+
+
                 </div>
+
+
             </div>
         </nav>
     );

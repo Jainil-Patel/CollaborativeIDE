@@ -36,8 +36,8 @@ const Sidebar = ({ setSidebarWidth }) => {
             />
             <SidebarButton
                 icon={folderIcon}
-                onClick={() => toggleSubSidebar("folder")}
-                active={activeSidebar === "folder"} // Pass active state to the button
+                onClick={() => toggleSubSidebar("explorer")}
+                active={activeSidebar === "explorer"} // Pass active state to the button
             />
             <SidebarButton
                 icon={teamIcon}
@@ -53,18 +53,18 @@ const Sidebar = ({ setSidebarWidth }) => {
                 </div>
             )}
 
-            {/* Sub Sidebar for Folder */}
-            {activeSidebar === "folder" && (
+            {/* Sub Sidebar for explorer */}
+            {activeSidebar === "explorer" && (
                 <div className="w-64 select-none font-mono text-[#D4D4D4] bg-[#1B1C1D] border-r border-[#3C3C3C] h-screen fixed top-14 left-16 flex flex-col items-center py-2">
-                    Folder
-                    {/* Add additional content for Folder sub-sidebar */}
+                    Explorer
+                    {/* Add additional content for explorer sub-sidebar */}
                 </div>
             )}
 
             {/* Sub Sidebar for Team */}
             {activeSidebar === "team" && (
                 <div className="w-64 select-none font-mono text-[#D4D4D4] bg-[#1B1C1D] border-r border-[#3C3C3C] h-screen fixed top-14 left-16 flex flex-col items-center py-2">
-                    Teams
+                    Team
                     {/* Add additional content for Team sub-sidebar */}
                 </div>
             )}

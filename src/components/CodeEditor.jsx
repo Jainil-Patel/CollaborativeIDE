@@ -4,7 +4,9 @@ import Editor from "@monaco-editor/react";
 const CodeEditor = () => {
     return (
         <div>
-            <div className="h-10 w-60vw border-r border-b border-[#3C3C3C]"></div>
+            <div className="h-10  w-60vw border-r border-b border-[#3C3C3C] flex items-center justify-center">
+                <div className="font-mono text-white">hello.js</div>
+            </div>
             <Editor
                 className="border-r border-[#3C3C3C]"
                 height="89vh"
