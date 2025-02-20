@@ -1,5 +1,9 @@
 import React, { useState } from "react";
 import SidebarButton from "./SidebarButton"; // Import SidebarButton component
+import ProjectCreator from "./ProjectCreator";
+import ProjectList from "./ProjectList";
+import Explorer from "./Explorer";
+import { useProject } from "../context/ProjectContext";
 
 // Updated homeIcon path
 const homeIcon =
@@ -10,17 +14,14 @@ const teamIcon =
     "M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z";
 
 const Sidebar = ({ setSidebarWidth }) => {
-    // State to track which sub-sidebar to show
     const [activeSidebar, setActiveSidebar] = useState(null);
+    const { currentProject } = useProject(); // Get current project from context
 
-    // Toggle function to show respective sub-sidebar
     const toggleSubSidebar = (sidebar) => {
         if (activeSidebar === sidebar) {
-            // If clicking the active sidebar again, close it and reset width
             setSidebarWidth(64);
             setActiveSidebar(null);
         } else {
-            // Open a new sidebar and set width to 320px
             setSidebarWidth(320);
             setActiveSidebar(sidebar);
         }
@@ -32,40 +33,43 @@ const Sidebar = ({ setSidebarWidth }) => {
             <SidebarButton
                 icon={homeIcon}
                 onClick={() => toggleSubSidebar("home")}
-                active={activeSidebar === "home"} // Pass active state to the button
+                active={activeSidebar === "home"}
             />
             <SidebarButton
                 icon={folderIcon}
                 onClick={() => toggleSubSidebar("explorer")}
-                active={activeSidebar === "explorer"} // Pass active state to the button
+                active={activeSidebar === "explorer"}
             />
             <SidebarButton
                 icon={teamIcon}
                 onClick={() => toggleSubSidebar("team")}
-                active={activeSidebar === "team"} // Pass active state to the button
+                active={activeSidebar === "team"}
             />
 
-            {/* Sub Sidebar for Home */}
+            {/* Home Sidebar */}
             {activeSidebar === "home" && (
                 <div className="w-64 select-none font-mono text-[#D4D4D4] bg-[#1B1C1D] border-r border-[#3C3C3C] h-screen fixed top-14 left-16 flex flex-col items-center py-2">
-                    Home
-                    {/* Add additional content for Home sub-sidebar */}
+                    <ProjectCreator />
+                    <ProjectList />
                 </div>
             )}
 
-            {/* Sub Sidebar for explorer */}
+            {/* Explorer Sidebar */}
             {activeSidebar === "explorer" && (
                 <div className="w-64 select-none font-mono text-[#D4D4D4] bg-[#1B1C1D] border-r border-[#3C3C3C] h-screen fixed top-14 left-16 flex flex-col items-center py-2">
-                    Explorer
-                    {/* Add additional content for explorer sub-sidebar */}
+                    {currentProject ? (
+                        <Explorer projectName={currentProject} />
+                    ) : (
+                        <p className="text-gray-400 mt-2">Select a project first</p>
+                    )}
                 </div>
             )}
 
-            {/* Sub Sidebar for Team */}
+            {/* Team Sidebar */}
             {activeSidebar === "team" && (
                 <div className="w-64 select-none font-mono text-[#D4D4D4] bg-[#1B1C1D] border-r border-[#3C3C3C] h-screen fixed top-14 left-16 flex flex-col items-center py-2">
-                    Team
-                    {/* Add additional content for Team sub-sidebar */}
+                    <p>Team</p>
+                    {/* Future team management UI can go here */}
                 </div>
             )}
         </div>
