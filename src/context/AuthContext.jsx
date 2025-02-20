@@ -21,8 +21,8 @@ useEffect(()=>{
 }, [token]);
 
 
-const signup = async (email, password) => {
-    await axios.post('/auth/signup', {email, password})
+const signup = async (name , email, password) => {
+    await axios.post('/auth/signup', {name, email, password})
 }
 
 const verifyOtp = async (email, otp) => {

@@ -30,7 +30,7 @@ export default function Signup() {
     setLoading(true);
 
     try {
-      await signup(formData.email, formData.password);
+      await signup(formData.name ,formData.email, formData.password);
       setStep(2);
     } catch (error) {
       alert("Signup failed. Try again.");
