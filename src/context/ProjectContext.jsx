@@ -10,7 +10,7 @@ export const useProject = () => useContext(ProjectContext);
 // Provider Component
 export const ProjectProvider = ({ children }) => {
     const [currentProject, setCurrentProject] = useState(null);
-    const [selectedFile, setSelectedFile] = useState({ name: "", content: "" });
+    const [selectedFile, setSelectedFile] = useState({ name: "", content: "" , path: ""});
 
     const {user} = useAuth();
     const userEmail = user.email;

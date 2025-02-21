@@ -3,12 +3,14 @@ import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
 import CodeEditor from "../components/CodeEditor";
 import { ProjectProvider } from "../context/ProjectContext"; // ✅ Ensure the provider is included
+import { TeamProvider } from "../context/TeamContext";
 
 export default function Dashboard() {
     const [sidebarWidth, setSidebarWidth] = useState(64);
 
     return (
-        <ProjectProvider>  {/* ✅ Wrap Sidebar & Editor within the provider */}
+        <ProjectProvider>
+            <TeamProvider>  {/* Wrap Sidebar & Editor within the provider */}
             <Navbar />
 
             <div className="flex h-screen">
@@ -21,6 +23,7 @@ export default function Dashboard() {
                     <CodeEditor />
                 </div>
             </div>
+            </TeamProvider>
         </ProjectProvider>
     );
 }

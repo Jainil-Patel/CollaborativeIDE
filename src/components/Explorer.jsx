@@ -8,6 +8,7 @@ const Explorer = () => {
     const { user } = useAuth();
     const { currentProject, setSelectedFile } = useProject();
 
+
     const userEmail = user?.email; // Ensure user exists
 
     useEffect(() => {
@@ -32,7 +33,7 @@ const Explorer = () => {
             const response = await axios.get("/projects/file-content", {
                 params: { filePath },
             });
-            setSelectedFile({ name: filePath.split("/").pop(), content: response.data.content });
+            setSelectedFile({ name: filePath.split("/").pop(), content: response.data.content , path : filePath});
         } catch (error) {
             console.error("Error fetching file content:", error);
         }
@@ -59,11 +60,15 @@ const Explorer = () => {
     };
 
     return (
-        <div className="p-4 bg-[#1B1C1D] text-white w-64 h-screen border-r border-[#3C3C3C]">
+        <div>
+        <div className="p-4 bg-[#1B1C1D] text-white w-64 border-r border-[#3C3C3C]">
             <h2 className="text-lg mb-2">Explorer</h2>
             {fileStructure.length > 0 ? renderFileTree(fileStructure) : <p>No files found</p>}
         </div>
-    );
+
+        
+        </div>
+        );
 };
 
 export default Explorer;

@@ -4,6 +4,7 @@ import ProjectCreator from "./ProjectCreator";
 import ProjectList from "./ProjectList";
 import Explorer from "./Explorer";
 import { useProject } from "../context/ProjectContext";
+import Teams from "./Teams";
 
 // Updated homeIcon path
 const homeIcon =
@@ -69,9 +70,10 @@ const Sidebar = ({ setSidebarWidth }) => {
             {activeSidebar === "team" && (
                 <div className="w-64 select-none font-mono text-[#D4D4D4] bg-[#1B1C1D] border-r border-[#3C3C3C] h-screen fixed top-14 left-16 flex flex-col items-center py-2">
                     <p>Team</p>
-                    {/* Future team management UI can go here */}
+                    <Teams/>
                 </div>
             )}
+            
         </div>
     );
 };

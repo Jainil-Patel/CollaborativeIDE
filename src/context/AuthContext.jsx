@@ -35,6 +35,8 @@ const verifyOtp = async (email, otp) => {
     localStorage.setItem("user", JSON.stringify(receivedUser))
 }
 
+
+
 const signin = async (email, password) => {
     const res = await axios.post("/auth/signin", { email, password });
     const receivedToken = res.data.token;
