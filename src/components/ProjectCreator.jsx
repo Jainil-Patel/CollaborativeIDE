@@ -2,14 +2,21 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useAuth } from "../context/AuthContext";
 import { useProject } from "../context/ProjectContext";
+import { useTeam } from "../context/TeamContext";
 
 const ProjectCreator = () => {
     const [projectName, setProjectName] = useState("");
     const [language, setLanguage] = useState("javascript");
     const { user } = useAuth();
     const { setCurrentProject } = useProject();
+    const {team} = useTeam();
 
-    const userEmail = user?.email; // Ensure user email exists
+    let userEmail = user?.email; // Default to logged-in user email
+
+    // If team exists and has users, assign the first user's email
+        if (team?.users?.length > 0) {
+        userEmail = team.users[0].email;
+        }// Ensure user email exists
 
     const createProject = async () => {
         if (!projectName.trim()) return alert("Project name is required!");

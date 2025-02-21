@@ -2,14 +2,21 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useAuth } from "../context/AuthContext";
 import { useProject } from "../context/ProjectContext";
+import { useTeam } from "../context/TeamContext";
+
 
 const Explorer = () => {
     const [fileStructure, setFileStructure] = useState([]);
     const { user } = useAuth();
     const { currentProject, setSelectedFile } = useProject();
+    const {team} = useTeam();
 
+    let userEmail = user?.email; // Default to logged-in user email
 
-    const userEmail = user?.email; // Ensure user exists
+    // If team exists and has users, assign the first user's email
+        if (team?.users?.length > 0) {
+        userEmail = team.users[0].email;
+        } // Ensure user exists
 
     useEffect(() => {
         if (!userEmail || !currentProject) return;

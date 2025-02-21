@@ -10,11 +10,15 @@ const CodeEditor = () => {
     const [code, setCode] = useState("");
 
     // ✅ Update code when selectedFile changes
+
+
     useEffect(() => {
         if (selectedFile) {
             setCode(selectedFile.content || "");
         }
     }, [selectedFile]);
+        
+
 
     // ✅ Correctly handle editor changes
     const handleEditorChange = async (newValue) => {

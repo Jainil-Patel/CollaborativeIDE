@@ -2,13 +2,21 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useAuth } from "../context/AuthContext";
 import { useProject } from "../context/ProjectContext";
+import { useTeam } from "../context/TeamContext";
 
 const ProjectList = () => {
     const [projects, setProjects] = useState([]);
     const { user } = useAuth();
     const { setCurrentProject } = useProject();
+    const {team} = useTeam();
 
-    const userEmail = user?.email; // Ensure user exists
+    let userEmail = user?.email; // Default to logged-in user email
+
+// If team exists and has users, assign the first user's email
+    if (team?.users?.length > 0) {
+    userEmail = team.users[0].email;
+    }
+
 
     useEffect(() => {
         const fetchProjects = async () => {
