@@ -4,6 +4,7 @@ import Sidebar from "../components/Sidebar";
 import CodeEditor from "../components/CodeEditor";
 import { ProjectProvider } from "../context/ProjectContext"; // ✅ Ensure the provider is included
 import { TeamProvider } from "../context/TeamContext";
+import { Terminal } from "xterm";
 
 export default function Dashboard() {
     const [sidebarWidth, setSidebarWidth] = useState(64);
@@ -22,6 +23,7 @@ export default function Dashboard() {
                 >
                     <CodeEditor />
                 </div>
+               
             </div>
             </TeamProvider>
         </ProjectProvider>
