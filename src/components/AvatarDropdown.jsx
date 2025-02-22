@@ -47,7 +47,7 @@ const AvatarDropdown = () => {
                     onClick={() => setIsOpen(!isOpen)}
                     className="relative inline-flex cursor-pointer items-center justify-center w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600"
                 >
-                    <span className="font-medium select-none text-gray-600 dark:text-gray-300">J</span>
+                    <span className="font-medium select-none text-gray-600 dark:text-gray-300">{user.email[0]}</span>
                 </div>
             </div>
 
